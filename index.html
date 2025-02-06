@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa Virtual</title>
+    <style>
+        /* Garantir que o body e o html ocuparam a tela toda */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a2a4d; /* Fundo azul escuro */
+        }
+
+        /* Container para o vídeo */
+        .video-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh; /* 100% da altura da tela */
+            overflow: hidden;
+        }
+
+        /* Estilo do vídeo */
+        #background-video {
+            max-width: 80%;  /* Limita o vídeo a 80% da largura da tela */
+            max-height: 80vh; /* Limita a altura a 80% da altura da tela */
+            object-fit: cover; /* Faz o vídeo preencher o container sem distorção */
+        }
+
+        /* Sobreposição (se quiser usar uma sobreposição para melhorar a visibilidade do conteúdo) */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Cor escura com transparência */
+        }
+
+        /* Ajustes para dispositivos móveis */
+        @media (max-width: 768px) {
+            #background-video {
+                max-width: 100%;  /* No celular, o vídeo vai ocupar 100% da largura */
+                max-height: 60vh; /* Limita a altura para 60% da tela */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="background-video" autoplay loop>
+            <source src="feliz vida.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <audio id="background-music" autoplay loop>
+        <source src="musica.mp3" type="audio/mp3">
+        Seu navegador não suporta a tag de áudio.
+    </audio>
+
+    <!-- Confetes -->
+    <script src="confetti.js"></script>
+    <script>
+        // Função para iniciar os confetes
+        function startConfetti() {
+            confetti({
+                particleCount: 200,
+                angle: 90,
+                spread: 45,
+                origin: { x: 0.5, y: 0 },
+                colors: ['#ff0000', '#ff9900', '#0099ff', '#33cc33']
+            });
+        }
+
+        // Iniciar confetes ao carregar a página
+        window.onload = function() {
+            startConfetti();
+        };
+
+        // Garantir que o vídeo não tenha som
+        document.getElementById('background-video').muted = true;
+    </script>
+</body>
+</html>
 
